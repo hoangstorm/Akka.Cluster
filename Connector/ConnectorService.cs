@@ -11,7 +11,7 @@ namespace Connector
         private ActorSystem _actorSystem;
         private HostControl _hostControl;
         private static readonly ManualResetEvent asTerminatedEvent = new ManualResetEvent(false);
-        
+
         public bool Start(HostControl hostControl)
         {
             _hostControl = hostControl;
@@ -36,12 +36,12 @@ namespace Connector
             asTerminatedEvent.Set();
             Console.WriteLine("Member Removed");
         }
-        
+
         public void InitializeCluster()
         {
-            _actorSystem = ActorSystemFactory.LaunchClusterManager("Connector", "127.0.0.1");
+            _actorSystem = ActorSystemFactory.LaunchClusterManager("Connector", "127.0.0.1", 2053);
             Program.ClusterSystem = _actorSystem;
-            Program.ClusterHelper = Program.ClusterSystem.ActorOf(Props.Create(() => new ClusterHelper()), ActorPaths.ClusterHelperActor.Name);
+            Program.ClusterHelper = Program.ClusterSystem.ActorOf(Props.Create(() => new ClusterHelper()), "connector");
         }
     }
 }

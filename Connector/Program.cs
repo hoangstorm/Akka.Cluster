@@ -9,10 +9,10 @@ namespace Connector
         public static ActorSystem ClusterSystem { get; set; }
         public static IActorRef ClusterHelper;
         public static IActorRef ClusterStatus;
+        
 
         public static void Main(string[] args)
         {
-            args = args.Length == 0 ? new String[] {"4053"} : args;
             return (int) HostFactory.Run(x =>
             {
                 x.SetServiceName("Connector");
@@ -24,7 +24,7 @@ namespace Connector
                 //x.StartAutomatically();
                 x.DependsOnEventLog();
                 x.UseLog4Net();
-                x.Service<ConnectorService>(serviceFactory => new ConnectorService(args));
+                x.Service<ConnectorService>();
                 x.EnableServiceRecovery(r => r.RestartService(1));
             });
         }
