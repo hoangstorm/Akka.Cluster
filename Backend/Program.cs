@@ -4,7 +4,7 @@ using Akka.Actor;
 using Akka.Configuration;
 using Akka.Configuration.Hocon;
 
-namespace Connector
+namespace Backend
 {
     internal class Program
     {
@@ -19,12 +19,12 @@ namespace Connector
 
             var config =
                 ConfigurationFactory.ParseString("akka.remote.dot-netty.tcp.port=" + port)
-                    .WithFallback(ConfigurationFactory.ParseString("akka.cluster.roles = [connector]"))
+                    .WithFallback(ConfigurationFactory.ParseString("akka.cluster.roles = [backend]"))
                     .WithFallback(_clusterConfig);
 
             var system = ActorSystem.Create("ClusterSystem", config);
-            system.ActorOf(Props.Create<Transformation>(), "connector");
-
+            system.ActorOf(Props.Create<Transformation>(), "backend");
+            
             //starting 2 frontend nodes and 3 backend nodes
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
