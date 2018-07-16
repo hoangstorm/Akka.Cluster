@@ -60,6 +60,13 @@ namespace Connector
                 var memUp = (ClusterEvent.MemberUp) message;
                 Register(memUp.Member);
             }
+
+            if (message is TransformationMessages.TransformationJob && Backends.Count == 0)
+            {
+                var job = (TransformationMessages.TransformationJob) message;
+                Sender.Tell(new TransformationMessages.JobFailed("Backend Service unavailable, try again later.", job),
+                    Sender);
+            }
             else if (message is TransformationMessages.TransformationJob)
             {
                 Console.WriteLine(message);
@@ -67,17 +74,14 @@ namespace Connector
                 Jobs++;
 
                 var timeout = TimeSpan.FromSeconds(5);
-                
+
                 IActorRef sender = Sender;
-                
+
                 Console.WriteLine(Sender);
-                
+
                 Backends[Jobs % Backends.Count].Ask(message, timeout)
                     .ContinueWith(
-                        r =>
-                        {
-                            sender.Tell(r.Result);
-                        });
+                        r => { sender.Tell(r.Result); });
             }
             else if (message is TransformationMessages.TransformationResult)
             {

@@ -31,3 +31,79 @@ _UpgradeReport_Files/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Obj/
+UnityGenerated/
+Library/
+Assets/AssetStoreTools*
+Assets/UnityVS/
+Assets/UnityVS*
+
+#Assets/Scenes/Test*
+AssetBundles/*
+AssetBundle/*
+
+Assets/TEST
+Assets/TEST.meta
+
+Assets/GameSDK/MobileSDK*
+Assets/Libs/Modules*
+
+GModule*
+Tutorial Master*
+Assets/Plugins/Android*
+
+Assets/Fabric*
+Assets/Plugins*
+Assets/Plugins/iOS/Fabric*
+
+Assets/Vuforia*
+
+Assets/StreamingAssets/AssetBundles*
+
+# Everyplay
+Assets/Plugins/Everyplay*
+
+ProjectSettings/ProjectSettings.asset
+
+.idea*
+Assets/Editor*
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+obj/
+*.svd
+*.userprefs
+/*.csproj
+*.pidb
+*.suo
+/*.sln
+*.user
+*.unityproj
+*.booproj
+.vs
+.vs/*
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Assets/Scenes/Start/Resources.meta
+Assets/Scenes/Map/UI/temp.meta
+Assets/Scenes/Map/Resources/Prefabs/m
+m.meta
+Assets/DBLocal/h.meta
+*.meta
