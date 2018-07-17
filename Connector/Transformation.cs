@@ -79,9 +79,7 @@ namespace Connector
 
                 Console.WriteLine(Sender);
 
-                Backends[Jobs % Backends.Count].Ask(message, timeout)
-                    .ContinueWith(
-                        r => { sender.Tell(r.Result); });
+                Backends[Jobs % Backends.Count].Forward(message);
             }
             else if (message is TransformationMessages.TransformationResult)
             {
